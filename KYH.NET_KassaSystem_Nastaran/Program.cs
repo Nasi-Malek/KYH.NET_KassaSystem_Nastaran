@@ -7,6 +7,7 @@ using KYH.NET_KassaSystem_Nastaran.Interface;
 using KYH.NET_KassaSystem_Nastaran.Models;
 using KYH.NET_KassaSystem_Nastaran.Services;
 
+
 namespace KYH.NET_KassaSystem_Nastaran
 {
     class Program
@@ -24,35 +25,9 @@ namespace KYH.NET_KassaSystem_Nastaran
 
             try
             {
-                // Skapa produkter
-                var apple = new Product(301, "Apple", 10m, "per styck");
-                var banana = new Product(300, "Banana", 8m, "per styck");
 
-                // Lägg till kampanjer till produkter
-                var appleCampaign = new Campaign(
-                    CampaignType.PercentageDiscount, 20m,
-                   new DateTime(2024, 11, 01), new DateTime(2024, 12, 25)
-                );
 
-                var bananaCampaign = new Campaign(
-                    CampaignType.FixedDiscount, 5m,
-                   new DateTime(2024, 11, 01), new DateTime(2024, 12, 25)
-                );
 
-                // Associera kampanjer med produkter
-                apple.AddCampaign(appleCampaign);
-                banana.AddCampaign(bananaCampaign);
-
-                // Lägg till produkter i AdminTool (för enkelhetens skull)
-                adminTool.AddProduct(apple);
-                adminTool.AddProduct(banana);
-
-                // Skapa kvitto och lägg till köpta produkter
-                receipt.AddItem(apple, 3); // Köpt 3 äpplen
-                receipt.AddItem(banana, 5); // Köpt 5 bananer
-
-                // Skriv ut och spara kvitto
-                receipt.PrintAndSaveReceipt();
 
                 // Konsolutdata för att visa kvittot i terminalen
                 Console.WriteLine(" (APPLE => 20% rabatt på 10.00 kr -> 8.00 kr per styck)");
@@ -67,6 +42,8 @@ namespace KYH.NET_KassaSystem_Nastaran
 
                 // Starta huvudloopen för kassaflödet
                 cashRegister.Start();
+                Console.Clear();
+                receipt.PrintAndSaveReceipt();
             }
             catch (Exception ex)
             {

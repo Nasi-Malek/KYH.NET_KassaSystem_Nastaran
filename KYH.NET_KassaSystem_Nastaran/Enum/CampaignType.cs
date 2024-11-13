@@ -9,8 +9,7 @@ namespace KYH.NET_KassaSystem_Nastaran.Enum
     public enum CampaignType
     {
         PercentageDiscount,
-        FixedDiscount,
-        BuyOneGetOneFree,
-        SeasonalSale
+        FixedDiscount
+       
     }
 }

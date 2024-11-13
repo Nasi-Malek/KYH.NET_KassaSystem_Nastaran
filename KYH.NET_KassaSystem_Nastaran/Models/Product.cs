@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using KYH.NET_KassaSystem_Nastaran.Services;
 
+
+
 namespace KYH.NET_KassaSystem_Nastaran.Models
 {
     public class Product
@@ -57,10 +59,8 @@ namespace KYH.NET_KassaSystem_Nastaran.Models
         /// <returns>Det justerade priset baserat på kampanj.</returns>
         public decimal GetEffectivePrice(DateTime date)
         {
-            // Hitta den första aktiva kampanjen som gäller för angivet datum
             var activeCampaign = Campaigns.FirstOrDefault(c => c.IsActive(date));
 
-            // Om det finns en aktiv kampanj, använd kampanjpriset, annars använd standardpriset
             return activeCampaign != null ? activeCampaign.ApplyDiscount(Price) : Price;
         }
     }

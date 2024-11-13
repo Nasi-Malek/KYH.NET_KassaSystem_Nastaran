@@ -60,11 +60,15 @@ namespace KYH.NET_KassaSystem_Nastaran.Services
                         var product = adminTool.Products.FirstOrDefault(p => p.Id == productId);
                         if (product != null)
                         {
-                            currentReceipt.AddItem(product, quantity); // Lägg till produkten i kvittot
+                            // Beräkna det effektiva priset baserat på dagens datum
+                            decimal effectivePrice = product.GetEffectivePrice(DateTime.Now);
+
+                            // Lägg till produkten i kvittot med rätt pris
+                            currentReceipt.AddItem(product, quantity);
                         }
                         else
                         {
-                            Console.WriteLine("Produkt ej funnen."); // Felmeddelande om produkten inte finns
+                            Console.WriteLine("Produkten med angivet ID hittades inte.");
                         }
                     }
                     catch (Exception ex)
